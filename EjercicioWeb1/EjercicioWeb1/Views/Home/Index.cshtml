@@ -1,0 +1,58 @@
+﻿@model System.Data.DataSet;
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+@using (Html.BeginForm("", "", FormMethod.Post))
+{
+<div class="row">
+    <input type="submit" asp-controller="Home" asp-action="Registrar" class="btn btn-primary" value="Nuevo" />
+</div>
+    <br />
+
+    <div class="table-responsive m-t-40">
+        <table id="dtTable" class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    @{
+                        if (Model != null && Model.Tables.Count > 0)
+                        {
+                            foreach (System.Data.DataRow row in Model.Tables[1].Rows)
+                            {
+                                <th width="@row[1].ToString()">
+                                    @row[0].ToString()
+                                </th>
+                            }
+                        }
+                    }
+                </tr>
+            </thead>
+            <tbody>
+                @{
+                    if (Model != null && Model.Tables.Count > 0)
+                    {
+                        foreach (System.Data.DataRow row in Model.Tables[0].Rows)
+                        {
+                            <tr>
+                                @foreach (var item in row.ItemArray)
+                                {
+                                    <td>
+                                        @item.ToString()
+                                    </td>
+                                }
+
+                                <td>
+                                    <button asp-action="Editar" asp-controller="Home" asp-route-prmID=@row[0].ToString() type="submit" class="btn btn-warning waves-effect">Editar</button>
+                                    <button data-content="@row[0].ToString()" id="txtEliminar" type="button" class="btn btn-danger waves-effect">Eliminar</button>
+                                </td>
+                            </tr>
+                        }
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+}
+
+<script src="~/js/jquery.min.js"></script>
+<script src="~/js/producto.js"></script>

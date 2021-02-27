@@ -1,0 +1,46 @@
+﻿@model EjercicioWeb1.Models.ProductoViewModel;
+
+@{
+    ViewData["Title"] = "Editar Producto";
+}
+
+@using (Html.BeginForm("EditarRegistro", "Home", FormMethod.Post, new { id = "FrmCatalogoEditar" }))
+{
+    <div class="form-group">
+        <label for="txtID">Folio</label>
+        <input type="text" id="txtID" name="nProducto" value="@Model.nProducto" readonly/>
+    </div>
+
+    <div class="form-group">
+        <label for="txtProducto">Producto</label>
+        <input type="text" class="form-control" name="cDescripcion" value="@Model.cDescripcion" id="txtProducto" autocomplete="off" required>
+    </div>
+    <div class="form-group">
+        <label for="txtPrecio">Precio</label>
+        <input type="text" class="form-control input-number" name="nPrecio" value="@Model.nPrecio" id="txtPrecio" autocomplete="off" required>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <label for="cmdIva">Porc. Iva</label>
+            <select class="custom-select" name="nPorcIVA" id="cmdIva" required>
+                <option value="1" selected>16%</option>
+            </select>
+        </div>
+        <div class="col-md-6">
+            <label for="txtIva">IVA</label>
+            <input type="text" class="form-control input-number" name="nImporteIva" value="@Model.nImporteIVA" autocomplete="off" id="txtIva" required readonly>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="txtPrecioIva">Precio con IVA</label>
+        <input type="text" class="form-control input-number" name="nPrecioConIVA" value="@Model.nPrecioConIVA" autocomplete="off" id="txtPrecioIva" required readonly>
+    </div>
+
+    <button type="button" id="txtRegresar" class="btn btn-secondary">Regresar</button>
+    <button type="submit" class="btn btn-primary">Guardar</button>
+}
+
+@section Scripts{
+    <script src="~/js/functions.js"></script>
+    <script src="~/js/producto.js"></script>
+}

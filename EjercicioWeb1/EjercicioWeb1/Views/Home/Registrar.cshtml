@@ -1,0 +1,39 @@
+﻿@{
+    ViewData["Title"] = "Registrar Producto";
+}
+
+@using (Html.BeginForm("Guardar", "Home", FormMethod.Post, new { id = "FrmCatalogo" }))
+{
+    <div class="form-group">
+        <label for="txtProducto">Producto</label>
+        <input type="text" class="form-control" name="cDescripcion" id="txtProducto" autocomplete="off" required>
+    </div>
+    <div class="form-group">
+        <label for="txtPrecio">Precio</label>
+        <input type="text" class="form-control input-number" name="nPrecio" autocomplete="off" id="txtPrecio" required>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <label for="cmdIva">Porc. Iva</label>
+            <select class="custom-select" name="nPorcIVA" id="cmdIva" required>
+                <option value="1">16%</option>
+            </select>
+        </div>
+        <div class="col-md-6">
+            <label for="txtIva">IVA</label>
+            <input type="text" class="form-control input-number" name="nImporteIva" id="txtIva" autocomplete="off" required readonly>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="txtPrecioIva">Precio con IVA</label>
+        <input type="text" class="form-control input-number" name="nPrecioConIVA" id="txtPrecioIva" autocomplete="off" required readonly>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Guardar</button>
+    <button type="button" id="txtRegresar" class="btn btn-secondary">Cancelar</button>
+}
+
+@section Scripts{
+    <script src="~/js/functions.js"></script>
+    <script src="~/js/producto.js"></script>
+}
